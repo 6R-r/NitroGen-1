@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Drawing;
 using Console = Colorful.Console;
+using System.Threading;
+using System;
 
 namespace NitroGen
 {
@@ -11,9 +13,9 @@ namespace NitroGen
         {
             Console.Title = "Nitro Gen";
             Console.WriteLine(Title.asciiTitle, ColorTranslator.FromHtml("#7289da"));
-            Console.WriteLine("By: Kwalix\n", ColorTranslator.FromHtml("#ed8409"));
+            Console.WriteLine("Note : Any code generated, are not verified\n codes may have already been used or invalid", Color.OrangeRed);
             Generator.Init();
-            Generator.Start();
+
         }
     }
 }

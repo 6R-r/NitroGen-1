@@ -20,16 +20,20 @@ namespace NitroGen
             {
                 string tmp = Console.ReadLine();
                 amount = Int32.Parse(tmp);
+                if (amount <= 0)
+                {
+                    throw new Exception("Please enter a valid number!");
+
+                }
             } catch (Exception ex)
             {
                 Console.WriteLine($"[ERR] {ex.Message}", Color.Red);
                 Console.WriteLine("[INF] Please retry", ColorTranslator.FromHtml("#0972ec"));
+                
                 Init();
             }
-            if(amount <= 0)
-            {
-                throw new Exception("Please enter a valid number!");
-            }
+            
+            Start();
         }
         private static void Save()
         {
@@ -40,8 +44,11 @@ namespace NitroGen
             Thread.Sleep(2000);
             if(File.Exists(filePath))
             {
-                File.WriteAllText(filePath, generatorDate + " Codes");
-                File.WriteAllLines(filePath, codeSave);
+                using (StreamWriter sw = File.AppendText(filePath))
+                {
+                    sw.WriteLine($"\n###### {generatorDate} ######\n");
+                    codeSave.ForEach(s => sw.WriteLine("https://discord.gift/" + s));
+                }
             } else
             {
                 Console.WriteLine("\n[INF] Nitro.txt not exist, creating it...", ColorTranslator.FromHtml("#0972ec"));
@@ -52,8 +59,37 @@ namespace NitroGen
                         fs.WriteByte(i);
                     }
                 }
-                File.WriteAllText(filePath, generatorDate + " Codes");
-                File.WriteAllLines(filePath, codeSave);
+                using (StreamWriter sw = File.AppendText(filePath))
+                {
+                    sw.WriteLine($"\n###### {generatorDate} ######\n");
+                    codeSave.ForEach(s => sw.WriteLine("https://discord.gift/" + s));
+                }
+            }
+
+            Console.Write("\nwhat do you want to do [Gen| Exit] : ", Color.Yellow);
+            string choice = Console.ReadLine();
+            switch (choice)
+            {
+                case "generate":
+                case "gen":
+                case "Gen":
+                case "g":
+                case "G":
+                    Init();
+                    break;
+                case "exit":
+                case "Exit":
+                case "e":
+                case "E":
+                    Console.WriteLine("\nThx for using this tool :)", Color.Gold);
+                    Thread.Sleep(2000);
+                    Environment.Exit(0);
+                    break;
+                default:
+                    Console.WriteLine("\nThx for using this tool :)", Color.Gold);
+                    Thread.Sleep(2000);
+                    Environment.Exit(0);
+                    break;
             }
         }
         public static void Start()
