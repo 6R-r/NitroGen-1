@@ -16,6 +16,8 @@ namespace NitroGen
 ██║ ╚████║██║   ██║   ██║  ██║╚██████╔╝    ╚██████╔╝███████╗██║ ╚████║
 ╚═╝  ╚═══╝╚═╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝      ╚═════╝ ╚══════╝╚═╝  ╚═══╝
 ===> A simple Discord Nitro gift code generator <===
+
+By: Kwalix
 ";
     }
 }
