@@ -33,6 +33,28 @@ namespace NitroGen
         }
         private static void Save()
         {
+            string filePath = Path.Combine(Directory.GetCurrentDirectory().ToString(), "Nitro.txt");
+            string codeToString = String.Join("\n", codeSave);
+            Console.WriteLine("\n[INF] Save generated code", ColorTranslator.FromHtml("#0972ec"));
+
+            Thread.Sleep(2000);
+            if(File.Exists(filePath))
+            {
+                File.WriteAllText(filePath, generatorDate + " Codes");
+                File.WriteAllLines(filePath, codeSave);
+            } else
+            {
+                Console.WriteLine("\n[INF] Nitro.txt not exist, creating it...", ColorTranslator.FromHtml("#0972ec"));
+                using (System.IO.FileStream fs = System.IO.File.Create(filePath))
+                {
+                    for (byte i = 0; i < 100; i++)
+                    {
+                        fs.WriteByte(i);
+                    }
+                }
+                File.WriteAllText(filePath, generatorDate + " Codes");
+                File.WriteAllLines(filePath, codeSave);
+            }
         }
         public static void Start()
         {
@@ -53,10 +75,10 @@ namespace NitroGen
                     tmpCode.Add(tmpChar);
                 }
                 string completeCode = String.Join("", tmpCode);
-                Console.WriteLine($"[-] https://discord.com/gifts/{completeCode}", ColorTranslator.FromHtml("#08d91a"));
+                Console.WriteLine($"[-] {completeCode}", ColorTranslator.FromHtml("#08d91a"));
                 codeSave.Add(completeCode);
-                Save();
             }
+            Save();
         }
     }
 }
