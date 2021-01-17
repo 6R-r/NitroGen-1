@@ -6,6 +6,7 @@
 	  <StartupObject>NitroGen.Program</StartupObject>
 	  <Description>Discord nitro generator</Description>
 	  <Authors>Kwalix</Authors>
+	  <ApplicationIcon>nitroGen-ico_1_.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
