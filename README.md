@@ -1,4 +1,5 @@
 ﻿# Nitro Gen
+![GitHub release (by tag)](https://img.shields.io/github/downloads/Kwalix/NitroGen/v1.0.0/total)
 
 nitrogen and a nitro discord link generator, easy to use
 
