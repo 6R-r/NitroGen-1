@@ -4,6 +4,7 @@ using System.Text;
 using Leaf.xNet;
 using Console = Colorful.Console;
 using System.IO;
+using System.Drawing;
 
 namespace NitroGen
 {
@@ -22,18 +23,47 @@ namespace NitroGen
             }
         }
 
+        static bool ParseProxy(string parsedProx)
+        {
+           if (parsedProx.Contains("8080"))
+            {
+                Console.WriteLine(parsedProx);
+                return true;
+            } else
+            {
+                return false;
+            }
+
+        }
+
         static public void Checking()
         {
             FetchProxies();
-            Random randomProxy = new Random();
-            Console.WriteLine(proxies[5]);
             using (var request = new HttpRequest())
             {
-                // Randomize User-agent for better anonymity
+                request.KeepTemporaryHeadersOnRedirect = true;
+                Console.WriteLine("Start checking code...", ColorTranslator.FromHtml("#0972ec"));
                 request.UserAgent = Http.RandomUserAgent();
-                request.Proxy = HttpProxyClient.Parse(proxies[randomProxy.Next(0, proxies.Count)]);
-                request.Get("https://discord.com/api/v8/entitlements/gift-codes/");
-                Console.WriteLine(request.Response);
+                foreach (string code in Generator.codeSave)
+                {
+                    Random randomProxy = new Random();
+                    try
+                    {
+                        while (!ParseProxy(proxies[proxiesCounter]))
+                        {
+                            proxiesCounter++;
+                        }
+                        request.Proxy = HttpProxyClient.Parse(proxies[proxiesCounter]);
+                        Console.WriteLine($"https://discord.com/gifts/{code}");
+                        request.Get($"https://discord.com/gifts/{code}");
+                        Console.WriteLine(request.Response);
+                    } 
+                    catch (Exception ex)
+                    {
+                        proxiesCounter++;
+                        Console.WriteLine("[ERR] Cannot connect to proxy", Color.Red);
+                    }
+                } 
             }
         }
     }

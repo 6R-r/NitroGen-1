@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Anarchy-wrapper" Version="0.8.0.1" />
     <PackageReference Include="Colorful.Console" Version="1.2.15" />
     <PackageReference Include="Leaf.xNet" Version="5.2.10" />
   </ItemGroup>

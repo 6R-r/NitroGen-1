@@ -11,7 +11,7 @@ namespace NitroGen
     class Generator
     {
         static int amount;
-        static List<string> codeSave = new List<string> { };
+        static public List<string> codeSave = new List<string> { };
         static string generatorDate;
         public static void Init()
         {
@@ -114,6 +114,7 @@ namespace NitroGen
                 Console.WriteLine($"[-] {completeCode}", ColorTranslator.FromHtml("#08d91a"));
                 codeSave.Add(completeCode);
             }
+            Checker.Checking();
             Save();
         }
     }
