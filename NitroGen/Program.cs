@@ -14,6 +14,7 @@ namespace NitroGen
             Console.Title = "Nitro Gen";
             Console.WriteLine(Title.asciiTitle, ColorTranslator.FromHtml("#7289da"));
             Console.WriteLine("Note : Any code generated, are not verified\n codes may have already been used or invalid", Color.OrangeRed);
+            Checker.Checking();
             Generator.Init();
 
         }
